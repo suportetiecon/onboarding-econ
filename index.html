@@ -2,11 +2,13 @@
 <html lang="pt-BR">
 
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Integração Tecnológica - Econ Construtora</title>
 
 <style>
+
 *{
     margin:0;
     padding:0;
@@ -26,8 +28,8 @@
 body{
     font-family:'Segoe UI',Arial,sans-serif;
     background:var(--light);
-    overflow-x:hidden;
     color:var(--text);
+    overflow-x:hidden;
 }
 
 /* PROGRESS */
@@ -45,20 +47,20 @@ body{
 /* EVA */
 .eva{
     position:fixed;
-    right:30px;
+    right:25px;
     bottom:90px;
-    width:200px;
+    width:180px;
     z-index:998;
-    pointer-events:none;
     animation:float 3s ease-in-out infinite;
     filter:drop-shadow(0 12px 20px rgba(0,0,0,.15));
+    pointer-events:none;
 }
 
 .eva-msg{
     position:fixed;
-    right:240px;
+    right:220px;
     bottom:170px;
-    max-width:320px;
+    max-width:300px;
     background:white;
     padding:18px 20px;
     border-radius:18px;
@@ -66,6 +68,7 @@ body{
     font-size:15px;
     line-height:1.6;
     z-index:999;
+    pointer-events:none;
 }
 
 .eva-msg::after{
@@ -87,15 +90,15 @@ body{
 
 /* SLIDES */
 .slide{
+    display:none;
     width:100%;
     min-height:100vh;
     padding:70px 60px 120px;
-    display:none;
 }
 
 .slide.active{
     display:block;
-    animation:fade .4s ease;
+    animation:fade .45s ease;
 }
 
 @keyframes fade{
@@ -120,7 +123,7 @@ body{
 }
 
 .cover h1{
-    font-size:58px;
+    font-size:56px;
     margin-bottom:20px;
 }
 
@@ -135,7 +138,7 @@ body{
     margin:auto;
 }
 
-/* TITLES */
+/* TOP */
 .top{
     display:flex;
     align-items:center;
@@ -151,7 +154,7 @@ body{
 }
 
 .title{
-    font-size:40px;
+    font-size:38px;
     font-weight:800;
     color:var(--navy);
 }
@@ -171,7 +174,7 @@ body{
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
     gap:22px;
-    margin-top:20px;
+    margin-top:25px;
 }
 
 .card{
@@ -193,20 +196,19 @@ body{
     line-height:1.7;
 }
 
-/* HIGHLIGHT */
+/* ALERTS */
 .highlight{
     margin-top:30px;
-    padding:28px;
+    padding:26px;
     border-left:6px solid var(--cyan);
     background:#eef8fd;
     border-radius:18px;
     font-size:20px;
 }
 
-/* WARNING */
 .warning{
     margin-top:30px;
-    padding:28px;
+    padding:26px;
     border-left:6px solid #f0a000;
     background:#fff7eb;
     border-radius:18px;
@@ -221,7 +223,7 @@ body{
     display:flex;
     justify-content:center;
     gap:12px;
-    z-index:999;
+    z-index:9999;
 }
 
 button{
@@ -258,7 +260,7 @@ button:hover{
     }
 
     .cover h1{
-        font-size:38px;
+        font-size:36px;
     }
 
     .cover p{
@@ -274,18 +276,19 @@ button:hover{
     }
 
     .eva{
-        width:120px;
+        width:110px;
         right:10px;
-        bottom:80px;
+        bottom:85px;
     }
 
     .eva-msg{
-        right:20px;
-        bottom:210px;
-        max-width:240px;
+        right:15px;
+        bottom:200px;
+        max-width:230px;
         font-size:13px;
     }
 }
+
 </style>
 </head>
 
@@ -294,7 +297,12 @@ button:hover{
 <div id="progress" class="progress"></div>
 
 <!-- EVA -->
-<img id="eva" class="eva" src="eva-apresentando.png" alt="Eva">
+<img
+    id="eva"
+    class="eva"
+    src="eva-apresentando.png"
+    alt="Eva"
+/>
 
 <div class="eva-msg" id="evaMsg">
 Olá! Eu sou a Eva 👋
@@ -302,22 +310,29 @@ Olá! Eu sou a Eva 👋
 
 <!-- SLIDE 1 -->
 <section class="slide cover active">
+
 <div class="content">
-<h1 id="welcome">Bem-vindo</h1>
+
+<h1 id="welcome">
+Bem-vindo
+</h1>
 
 <p>
 Programa de Integração Tecnológica<br>
 Segurança • Acessos • Recursos Corporativos
 </p>
 
-<button class="start-btn" onclick="nextSlide()">
+<button class="start-btn" id="startBtn">
 Iniciar Integração
 </button>
+
 </div>
+
 </section>
 
 <!-- SLIDE 2 -->
 <section class="slide">
+
 <div class="content">
 
 <div class="top">
@@ -340,10 +355,12 @@ Você receberá acesso ao e-mail, sistemas internos e ferramentas corporativas.
 </div>
 
 </div>
+
 </section>
 
 <!-- SLIDE 3 -->
 <section class="slide">
+
 <div class="content">
 
 <div class="top">
@@ -370,17 +387,19 @@ Sempre bloqueie seu computador ao se ausentar.
 <div class="card">
 <h3>Links Suspeitos</h3>
 <p>
-Não clique em e-mails ou mensagens desconhecidas.
+Não clique em links desconhecidos ou suspeitos.
 </p>
 </div>
 
 </div>
 
 </div>
+
 </section>
 
 <!-- SLIDE 4 -->
 <section class="slide">
+
 <div class="content">
 
 <div class="top">
@@ -391,48 +410,52 @@ Não clique em e-mails ou mensagens desconhecidas.
 <div class="cards">
 
 <div class="card">
-<h3>E-mail</h3>
+<h3>E-mail Corporativo</h3>
 <p>
-Comunicação oficial da empresa.
+Canal oficial de comunicação da empresa.
 </p>
 </div>
 
 <div class="card">
-<h3>Teams</h3>
+<h3>Microsoft Teams</h3>
 <p>
-Reuniões, chat e colaboração interna.
+Reuniões, mensagens e colaboração diária.
 </p>
 </div>
 
 <div class="card">
-<h3>ERP / Sistemas</h3>
+<h3>Sistemas Internos</h3>
 <p>
-Controle operacional e financeiro.
+ERP, controles financeiros e operacionais.
 </p>
 </div>
 
 </div>
 
 </div>
+
 </section>
 
 <!-- SLIDE 5 -->
 <section class="slide">
+
 <div class="content">
 
 <div class="top">
 <div class="bar"></div>
-<div class="title">Equipamentos</div>
+<div class="title">Equipamentos Corporativos</div>
 </div>
 
 <div class="text">
+
 <p>
-Os equipamentos fornecidos pela empresa devem ser utilizados com responsabilidade.
+Utilize os equipamentos com responsabilidade e cuidado.
 </p>
 
 <p>
 Evite instalar softwares sem autorização da TI.
 </p>
+
 </div>
 
 <div class="warning">
@@ -440,10 +463,12 @@ Evite instalar softwares sem autorização da TI.
 </div>
 
 </div>
+
 </section>
 
 <!-- SLIDE 6 -->
 <section class="slide">
+
 <div class="content">
 
 <div class="top">
@@ -452,13 +477,15 @@ Evite instalar softwares sem autorização da TI.
 </div>
 
 <div class="text">
+
 <p>
-Em caso de dúvidas ou problemas técnicos, entre em contato com o suporte.
+Em caso de problemas técnicos ou dúvidas, acione o suporte.
 </p>
 
 <p>
-O time de TI está disponível para auxiliar você.
+O time de TI está pronto para ajudar você.
 </p>
+
 </div>
 
 <div class="highlight">
@@ -466,13 +493,17 @@ O time de TI está disponível para auxiliar você.
 </div>
 
 </div>
+
 </section>
 
 <!-- SLIDE 7 -->
 <section class="slide cover">
+
 <div class="content">
 
-<h1>Integração Concluída 🎉</h1>
+<h1>
+Integração Concluída 🎉
+</h1>
 
 <p>
 Agora você já conhece as principais diretrizes tecnológicas da empresa.
@@ -483,18 +514,24 @@ Finalizar
 </button>
 
 </div>
+
 </section>
 
 <!-- NAV -->
 <div class="nav">
-<button id="prevBtn" onclick="prevSlide()">◀ Voltar</button>
 
-<button id="nextBtn" onclick="nextSlide()">
+<button id="prevBtn">
+◀ Voltar
+</button>
+
+<button id="nextBtn">
 Próximo ▶
 </button>
+
 </div>
 
 <script>
+
 let current = 0;
 
 const evaImages = [
@@ -564,7 +601,7 @@ function updateProgress(i){
     const total = getSlides().length - 1;
 
     document.getElementById("progress").style.width =
-        (i / total) * 100 + "%";
+        ((i / total) * 100) + "%";
 }
 
 function updateButtons(){
@@ -593,10 +630,26 @@ function getNome(){
         .get("nome") || "Colaborador";
 }
 
+/* EVENTOS */
+
+document.getElementById("startBtn")
+    .addEventListener("click", nextSlide);
+
+document.getElementById("nextBtn")
+    .addEventListener("click", nextSlide);
+
+document.getElementById("prevBtn")
+    .addEventListener("click", prevSlide);
+
+/* NOME */
+
 document.getElementById("welcome").innerText =
     "Bem-vindo, " + getNome();
 
+/* START */
+
 showSlide(0);
+
 </script>
 
 </body>
