@@ -5,7 +5,6 @@
 <title>Onboarding TI - Econ</title>
 
 <style>
-
 *{margin:0;padding:0;box-sizing:border-box;}
 
 body{
@@ -23,19 +22,17 @@ body{
     justify-content:center;
     align-items:center;
     opacity:0;
-    visibility:hidden; /* IMPORTANTE */
+    visibility:hidden;
     transform:translateX(40px);
     transition: all 0.5s ease;
 }
 
-
 .slide.active{
     opacity:1;
-    visibility:visible; /* IMPORTANTE */
+    visibility:visible;
     transform:translateX(0);
     z-index:10;
 }
-
 
 /* CONTEÚDO */
 .content{
@@ -44,7 +41,6 @@ body{
     text-align:center;
 }
 
-/* TITULOS */
 h1{
     font-size:44px;
     color:#132f4c;
@@ -57,7 +53,6 @@ h2{
     margin:20px 0;
 }
 
-/* TEXTO */
 p, li{
     font-size:20px;
     line-height:1.7;
@@ -69,7 +64,6 @@ ul, ol{
     text-align:left;
 }
 
-/* CAIXAS */
 .box{
     margin-top:25px;
     padding:20px;
@@ -86,7 +80,6 @@ ul, ol{
     border-radius:12px;
 }
 
-/* CAPA */
 .cover{
     background:linear-gradient(135deg,#132f4c,#1d4d73);
     color:white;
@@ -97,7 +90,6 @@ ul, ol{
     color:white;
 }
 
-/* NAV */
 .nav{
     position:fixed;
     bottom:30px;
@@ -121,7 +113,6 @@ button:hover{
     background:#1d4d73;
 }
 
-/* PROGRESS */
 .progress{
     position:fixed;
     top:0;
@@ -131,14 +122,12 @@ button:hover{
     width:0%;
 }
 
-/* BOTÃO INICIAR */
 .start-btn{
     margin-top:30px;
     background:#9BCB2B;
     color:#132f4c;
     font-weight:bold;
 }
-
 </style>
 </head>
 
@@ -155,179 +144,78 @@ button:hover{
 </div>
 
 
+
 <h1 id="welcome">Bem-vindo</h1>
 <p>Programa de Integração Tecnológica</p>
 
-<button class="start-btn" onclick="next()">Começar</button>
+<button class="start-btn" id="btnStart">Começar</button>
 
 </div>
 </div>
 
-<!-- SENHA -->
+<!-- SLIDE EXEMPLO -->
 <div class="slide">
 <div class="content">
-<h1>🔑 Primeiro Passo: Troque sua senha</h1>
-
-<ul>
-<li>Pressione CTRL + ALT + DEL</li>
-<li>Clique em "Alterar senha"</li>
-<li>Defina sua nova senha</li>
-</ul>
-
-<div class="box">
-Essa ação garante a segurança do seu acesso e protege os dados corporativos.
-</div>
+<h1>🔑 Troque sua senha</h1>
+<p>Pressione CTRL + ALT + DEL</p>
 </div>
 </div>
 
-<!-- MFA -->
-<div class="slide">
-<div class="content">
-<h1>🔐 Configure seu acesso seguro (MFA)</h1>
-
-<ol>
-<li>Acesse https://www.office.com</li>
-<li>Faça login</li>
-<li>Escolha "Aplicativo móvel"</li>
-<li>Instale Microsoft Authenticator</li>
-<li>Leia o QR Code</li>
-<li>Aprove a notificação</li>
-<li>Cadastre seu telefone</li>
-</ol>
-
-<div class="box">
-O MFA adiciona uma camada extra de proteção e é obrigatório para acesso aos sistemas.
-</div>
-</div>
-</div>
-
-<!-- TIME -->
-<div class="slide">
-<div class="content">
-
-<h1>👨‍💻 Time de Tecnologia</h1>
-
-<p>
-A equipe de TI está disponível para apoiar você em qualquer necessidade.
-</p>
-
-<ul>
-<li>Emerson Viana – Gerente de TI</li>
-<li>Leandro Rocha – Coordenador de Sistemas</li>
-<li>Marcus Rocha – Coordenador de Sistemas</li>
-<li>Equipe de Infraestrutura e Sistemas</li>
-</ul>
-
-</div>
-</div>
-
-<!-- SEGURANÇA -->
-<div class="slide">
-<div class="content">
-<h1>🔐 Como proteger suas informações</h1>
-
-<ul>
-<li>Bloqueie o computador ao se ausentar</li>
-<li>Não compartilhe senha</li>
-<li>Evite links suspeitos</li>
-<li>Não conecte dispositivos externos</li>
-</ul>
-
-<div class="alert">
-Essas práticas evitam incidentes e mantêm a segurança da empresa.
-</div>
-</div>
-</div>
-
-<!-- USO -->
-<div class="slide">
-<div class="content">
-<h1>📘 Uso adequado dos recursos</h1>
-
-<ul>
-<li>E-mail corporativo é para trabalho</li>
-<li>Teams é o canal oficial</li>
-<li>Informações devem ser tratadas como confidenciais</li>
-</ul>
-
-<div class="box">
-O uso correto dos recursos garante eficiência e segurança nas operações.
-</div>
-</div>
-</div>
-
-<!-- SUPORTE -->
-<div class="slide">
-<div class="content">
-<h1>📞 Precisa de ajuda?</h1>
-
-<h2>chamados@econconstrutora.com.br</h2>
-
-<div class="box">
-Ao abrir um chamado, informe: nome, área e descrição detalhada.
-</div>
-</div>
-</div>
-
-<!-- FINAL -->
 <div class="slide">
 <div class="content">
 <h1>🎉 Integração concluída</h1>
-<p>Agora você está pronto para utilizar os recursos da Econ Construtora.</p>
 </div>
 </div>
 
 <!-- NAV -->
 <div class="nav">
-<button onclick="prev()">◀ Voltar</button>
-<button onclick="next()">Próximo ▶</button>
+<button id="btnPrev">◀ Voltar</button>
+<button id="btnNext">Próximo ▶</button>
 </div>
 
 <script>
-
-/* NAVEGAÇÃO */
-let current = 0;
-const slides = document.querySelectorAll(".slide");
-
-function showSlide(index){
-    slides.forEach(slide => slide.classList.remove("active"));
-    slides[index].classList.add("active");
-
-    let progress = (index / (slides.length - 1)) * 100;
-    document.getElementById("progress").style.width = progress + "%";
-}
-
-function next(){
-    if(current < slides.length - 1){
-        current++;
-        showSlide(current);
-    }
-}
-
-function prev(){
-    if(current > 0){
-        current--;
-        showSlide(current);
-    }
-}
-
-/* NOME DINÂMICO */
-function getNome(){
-    const params = new URLSearchParams(window.location.search);
-    const nome = params.get("nome");
-
-    return nome ? decodeURIComponent(nome) : "Colaborador";
-}
-
 document.addEventListener("DOMContentLoaded", function(){
-    const nome = getNome();
+
+    let current = 0;
+    const slides = document.querySelectorAll(".slide");
+
+    function showSlide(index){
+        slides.forEach(slide => slide.classList.remove("active"));
+        slides[index].classList.add("active");
+
+        let progress = (index / (slides.length - 1)) * 100;
+        document.getElementById("progress").style.width = progress + "%";
+    }
+
+    function next(){
+        if(current < slides.length - 1){
+            current++;
+            showSlide(current);
+        }
+    }
+
+    function prev(){
+        if(current > 0){
+            current--;
+            showSlide(current);
+        }
+    }
+
+    document.getElementById("btnNext").addEventListener("click", next);
+    document.getElementById("btnPrev").addEventListener("click", prev);
+    document.getElementById("btnStart").addEventListener("click", next);
+
+    function getNome(){
+        const params = new URLSearchParams(window.location.search);
+        const nome = params.get("nome");
+        return nome ? decodeURIComponent(nome) : "Colaborador";
+    }
 
     document.getElementById("welcome").innerText =
-        "Bem-vindo, " + nome;
+        "Bem-vindo, " + getNome();
+
+    showSlide(0);
 });
-
-showSlide(0);
-
 </script>
 
 </body>
