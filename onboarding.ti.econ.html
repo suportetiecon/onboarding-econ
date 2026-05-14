@@ -6,127 +6,44 @@
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Segoe UI',Arial;background:#f4f7fa;overflow:hidden;}
 
-body{
-    font-family:'Segoe UI',Arial;
-    background:#f4f7fa;
-    overflow:hidden;
-}
-
-/* SLIDES */
 .slide{
-    position:absolute;
-    width:100%;
-    height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    opacity:0;
-    visibility:hidden;
+    position:absolute;width:100%;height:100vh;
+    display:flex;justify-content:center;align-items:center;
+    opacity:0;visibility:hidden;
     transform:translateX(40px);
     transition: all 0.5s ease;
 }
 
 .slide.active{
-    opacity:1;
-    visibility:visible;
-    transform:translateX(0);
-    z-index:10;
+    opacity:1;visibility:visible;
+    transform:translateX(0);z-index:10;
 }
 
-/* CONTEÚDO */
-.content{
-    max-width:900px;
-    width:100%;
-    text-align:center;
-}
+.content{max-width:900px;width:100%;text-align:center;}
 
-h1{
-    font-size:44px;
-    color:#132f4c;
-    margin-bottom:20px;
-}
-
-h2{
-    font-size:26px;
-    color:#1d4d73;
-    margin:20px 0;
-}
-
-p, li{
-    font-size:20px;
-    line-height:1.7;
-    color:#243041;
-}
-
-ul, ol{
-    margin-top:20px;
-    text-align:left;
-}
-
-.box{
-    margin-top:25px;
-    padding:20px;
-    background:#f3f9e7;
-    border-left:6px solid #9BCB2B;
-    border-radius:12px;
-}
-
-.alert{
-    margin-top:25px;
-    padding:20px;
-    background:#fff7eb;
-    border-left:6px solid orange;
-    border-radius:12px;
-}
-
-.cover{
-    background:linear-gradient(135deg,#132f4c,#1d4d73);
-    color:white;
-}
-
-.cover h1,
-.cover p{
-    color:white;
-}
+h1{font-size:44px;margin-bottom:20px;color:#132f4c;}
+p{font-size:20px;color:#243041;}
 
 .nav{
-    position:fixed;
-    bottom:30px;
-    width:100%;
-    display:flex;
-    justify-content:center;
-    gap:10px;
+    position:fixed;bottom:30px;width:100%;
+    display:flex;justify-content:center;gap:10px;
 }
 
 button{
-    padding:12px 20px;
-    border:none;
-    border-radius:10px;
-    background:#132f4c;
-    color:white;
-    cursor:pointer;
-    font-size:16px;
-}
-
-button:hover{
-    background:#1d4d73;
-}
-
-.progress{
-    position:fixed;
-    top:0;
-    left:0;
-    height:6px;
-    background:#00a7d7;
-    width:0%;
+    padding:12px 20px;border:none;border-radius:10px;
+    background:#132f4c;color:white;cursor:pointer;
 }
 
 .start-btn{
-    margin-top:30px;
-    background:#9BCB2B;
-    color:#132f4c;
+    margin-top:30px;background:#9BCB2B;color:#132f4c;
     font-weight:bold;
+}
+
+.progress{
+    position:fixed;top:0;left:0;height:6px;
+    background:#00a7d7;width:0%;
 }
 </style>
 </head>
@@ -145,22 +62,31 @@ button:hover{
 
 
 
+
+
 <h1 id="welcome">Bem-vindo</h1>
 <p>Programa de Integração Tecnológica</p>
-
 <button class="start-btn" id="btnStart">Começar</button>
-
 </div>
 </div>
 
-<!-- SLIDE EXEMPLO -->
+<!-- SLIDE 1 -->
 <div class="slide">
 <div class="content">
 <h1>🔑 Troque sua senha</h1>
-<p>Pressione CTRL + ALT + DEL</p>
+<p>CTRL + ALT + DEL → Alterar senha</p>
 </div>
 </div>
 
+<!-- SLIDE 2 -->
+<div class="slide">
+<div class="content">
+<h1>🔐 Configure MFA</h1>
+<p>Acesse office.com e configure o Authenticator</p>
+</div>
+</div>
+
+<!-- SLIDE FINAL -->
 <div class="slide">
 <div class="content">
 <h1>🎉 Integração concluída</h1>
@@ -174,17 +100,16 @@ button:hover{
 </div>
 
 <script>
-document.addEventListener("DOMContentLoaded", function(){
+window.onload = function(){
 
     let current = 0;
     const slides = document.querySelectorAll(".slide");
+    const progress = document.getElementById("progress");
 
     function showSlide(index){
-        slides.forEach(slide => slide.classList.remove("active"));
+        slides.forEach(s => s.classList.remove("active"));
         slides[index].classList.add("active");
-
-        let progress = (index / (slides.length - 1)) * 100;
-        document.getElementById("progress").style.width = progress + "%";
+        progress.style.width = (index/(slides.length-1))*100 + "%";
     }
 
     function next(){
@@ -201,21 +126,20 @@ document.addEventListener("DOMContentLoaded", function(){
         }
     }
 
-    document.getElementById("btnNext").addEventListener("click", next);
-    document.getElementById("btnPrev").addEventListener("click", prev);
-    document.getElementById("btnStart").addEventListener("click", next);
+    document.getElementById("btnNext").onclick = next;
+    document.getElementById("btnPrev").onclick = prev;
+    document.getElementById("btnStart").onclick = next;
 
     function getNome(){
         const params = new URLSearchParams(window.location.search);
-        const nome = params.get("nome");
-        return nome ? decodeURIComponent(nome) : "Colaborador";
+        return params.get("nome") || "Colaborador";
     }
 
     document.getElementById("welcome").innerText =
         "Bem-vindo, " + getNome();
 
     showSlide(0);
-});
+}
 </script>
 
 </body>
