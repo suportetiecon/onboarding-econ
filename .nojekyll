@@ -1,1 +1,3 @@
-
+git add .nojekyll
+git commit -m "fix pages build - disable jekyll"
+git push
