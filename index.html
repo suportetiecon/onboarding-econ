@@ -2,12 +2,16 @@
 <html lang="pt-BR">
 
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Integração Tecnológica - Econ Construtora</title>
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;}
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
 :root{
     --navy:#132f4c;
@@ -23,7 +27,6 @@ body{
     font-family:'Segoe UI',Arial,sans-serif;
     background:var(--light);
     overflow-x:hidden;
-    overflow-y:auto;
     color:var(--text);
 }
 
@@ -44,7 +47,7 @@ body{
     position:fixed;
     right:30px;
     bottom:90px;
-    width:210px;
+    width:200px;
     z-index:998;
     pointer-events:none;
     animation:float 3s ease-in-out infinite;
@@ -84,19 +87,26 @@ body{
 
 /* SLIDES */
 .slide{
-    position:absolute;
     width:100%;
     min-height:100vh;
     padding:70px 60px 120px;
-    opacity:0;
-    transform:translateX(40px);
-    transition:opacity .45s ease, transform .45s ease;
+    display:none;
 }
 
 .slide.active{
-    opacity:1;
-    transform:translateX(0);
-    z-index:2;
+    display:block;
+    animation:fade .4s ease;
+}
+
+@keyframes fade{
+    from{
+        opacity:0;
+        transform:translateX(30px);
+    }
+    to{
+        opacity:1;
+        transform:translateX(0);
+    }
 }
 
 /* COVER */
@@ -109,20 +119,79 @@ body{
     text-align:center;
 }
 
-.cover h1{font-size:58px;margin-bottom:20px;}
-.cover p{font-size:24px;line-height:1.7;}
+.cover h1{
+    font-size:58px;
+    margin-bottom:20px;
+}
+
+.cover p{
+    font-size:24px;
+    line-height:1.7;
+}
 
 /* CONTENT */
-.content{max-width:1200px;margin:auto;}
+.content{
+    max-width:1200px;
+    margin:auto;
+}
 
 /* TITLES */
-.top{display:flex;align-items:center;margin-bottom:35px;}
-.bar{width:10px;height:60px;background:var(--cyan);border-radius:20px;margin-right:18px;}
-.title{font-size:40px;font-weight:800;color:var(--navy);}
+.top{
+    display:flex;
+    align-items:center;
+    margin-bottom:35px;
+}
+
+.bar{
+    width:10px;
+    height:60px;
+    background:var(--cyan);
+    border-radius:20px;
+    margin-right:18px;
+}
+
+.title{
+    font-size:40px;
+    font-weight:800;
+    color:var(--navy);
+}
 
 /* TEXT */
-.text{font-size:22px;line-height:1.8;}
-.text p{margin-bottom:20px;}
+.text{
+    font-size:22px;
+    line-height:1.8;
+}
+
+.text p{
+    margin-bottom:20px;
+}
+
+/* CARDS */
+.cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:22px;
+    margin-top:20px;
+}
+
+.card{
+    background:white;
+    border:1px solid var(--border);
+    border-radius:20px;
+    padding:26px;
+    box-shadow:0 10px 22px rgba(0,0,0,.05);
+}
+
+.card h3{
+    color:var(--navy);
+    margin-bottom:12px;
+    font-size:22px;
+}
+
+.card p{
+    font-size:18px;
+    line-height:1.7;
+}
 
 /* HIGHLIGHT */
 .highlight{
@@ -144,35 +213,6 @@ body{
     font-size:20px;
 }
 
-/* CARDS */
-.cards{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-    gap:22px;
-    margin-top:20px;
-}
-
-.card{
-    background:white;
-    border:1px solid var(--border);
-    border-radius:20px;
-    padding:26px;
-    box-shadow:0 10px 22px rgba(0,0,0,.05);
-}
-
-.card h3{color:var(--navy);margin-bottom:12px;font-size:22px;}
-.card p{font-size:18px;line-height:1.7;}
-
-/* TIMELINE */
-.timeline{display:flex;flex-direction:column;gap:22px;}
-.step{
-    background:white;
-    border-left:8px solid var(--cyan);
-    border-radius:18px;
-    padding:24px;
-    box-shadow:0 8px 18px rgba(0,0,0,.05);
-}
-
 /* NAV */
 .nav{
     position:fixed;
@@ -192,6 +232,11 @@ button{
     color:white;
     cursor:pointer;
     font-size:15px;
+    transition:.2s;
+}
+
+button:hover{
+    transform:translateY(-2px);
 }
 
 .start-btn{
@@ -201,7 +246,46 @@ button{
     font-weight:700;
 }
 
-.finish-btn{background:var(--cyan);}
+.finish-btn{
+    background:var(--cyan);
+}
+
+/* MOBILE */
+@media(max-width:768px){
+
+    .slide{
+        padding:40px 20px 120px;
+    }
+
+    .cover h1{
+        font-size:38px;
+    }
+
+    .cover p{
+        font-size:20px;
+    }
+
+    .title{
+        font-size:28px;
+    }
+
+    .text{
+        font-size:18px;
+    }
+
+    .eva{
+        width:120px;
+        right:10px;
+        bottom:80px;
+    }
+
+    .eva-msg{
+        right:20px;
+        bottom:210px;
+        max-width:240px;
+        font-size:13px;
+    }
+}
 </style>
 </head>
 
@@ -210,97 +294,310 @@ button{
 <div id="progress" class="progress"></div>
 
 <!-- EVA -->
-<img id="eva" class="eva" src="eva-apresentando.png">
-<div class="eva-msg" id="evaMsg">Olá! Eu sou a Eva 👋</div>
+<img id="eva" class="eva" src="eva-apresentando.png" alt="Eva">
+
+<div class="eva-msg" id="evaMsg">
+Olá! Eu sou a Eva 👋
+</div>
 
 <!-- SLIDE 1 -->
 <section class="slide cover active">
 <div class="content">
 <h1 id="welcome">Bem-vindo</h1>
-<p>Programa de Integração Tecnológica<br>Segurança • Acessos • Recursos Corporativos</p>
-<button class="start-btn" onclick="nextSlide()">Iniciar Integração</button>
+
+<p>
+Programa de Integração Tecnológica<br>
+Segurança • Acessos • Recursos Corporativos
+</p>
+
+<button class="start-btn" onclick="nextSlide()">
+Iniciar Integração
+</button>
 </div>
 </section>
 
-<!-- SLIDES 2 A 11 (conteúdo intacto) -->
-<!-- 👉 Mantive TODOS os slides exatamente como você enviou -->
-<!-- (por limite de mensagem, o conteúdo visual já está garantido no motor e lógica) -->
+<!-- SLIDE 2 -->
+<section class="slide">
+<div class="content">
+
+<div class="top">
+<div class="bar"></div>
+<div class="title">Primeiro Acesso</div>
+</div>
+
+<div class="text">
+<p>
+Seu usuário corporativo será criado pelo time de TI.
+</p>
+
+<p>
+Você receberá acesso ao e-mail, sistemas internos e ferramentas corporativas.
+</p>
+</div>
+
+<div class="highlight">
+🔐 Nunca compartilhe sua senha com outras pessoas.
+</div>
+
+</div>
+</section>
+
+<!-- SLIDE 3 -->
+<section class="slide">
+<div class="content">
+
+<div class="top">
+<div class="bar"></div>
+<div class="title">Segurança da Informação</div>
+</div>
+
+<div class="cards">
+
+<div class="card">
+<h3>Senhas Fortes</h3>
+<p>
+Utilize letras maiúsculas, números e caracteres especiais.
+</p>
+</div>
+
+<div class="card">
+<h3>Bloqueio de Tela</h3>
+<p>
+Sempre bloqueie seu computador ao se ausentar.
+</p>
+</div>
+
+<div class="card">
+<h3>Links Suspeitos</h3>
+<p>
+Não clique em e-mails ou mensagens desconhecidas.
+</p>
+</div>
+
+</div>
+
+</div>
+</section>
+
+<!-- SLIDE 4 -->
+<section class="slide">
+<div class="content">
+
+<div class="top">
+<div class="bar"></div>
+<div class="title">Ferramentas Corporativas</div>
+</div>
+
+<div class="cards">
+
+<div class="card">
+<h3>E-mail</h3>
+<p>
+Comunicação oficial da empresa.
+</p>
+</div>
+
+<div class="card">
+<h3>Teams</h3>
+<p>
+Reuniões, chat e colaboração interna.
+</p>
+</div>
+
+<div class="card">
+<h3>ERP / Sistemas</h3>
+<p>
+Controle operacional e financeiro.
+</p>
+</div>
+
+</div>
+
+</div>
+</section>
+
+<!-- SLIDE 5 -->
+<section class="slide">
+<div class="content">
+
+<div class="top">
+<div class="bar"></div>
+<div class="title">Equipamentos</div>
+</div>
+
+<div class="text">
+<p>
+Os equipamentos fornecidos pela empresa devem ser utilizados com responsabilidade.
+</p>
+
+<p>
+Evite instalar softwares sem autorização da TI.
+</p>
+</div>
+
+<div class="warning">
+⚠ O uso inadequado pode comprometer a segurança da empresa.
+</div>
+
+</div>
+</section>
+
+<!-- SLIDE 6 -->
+<section class="slide">
+<div class="content">
+
+<div class="top">
+<div class="bar"></div>
+<div class="title">Suporte de TI</div>
+</div>
+
+<div class="text">
+<p>
+Em caso de dúvidas ou problemas técnicos, entre em contato com o suporte.
+</p>
+
+<p>
+O time de TI está disponível para auxiliar você.
+</p>
+</div>
+
+<div class="highlight">
+💡 Sempre reporte incidentes imediatamente.
+</div>
+
+</div>
+</section>
+
+<!-- SLIDE 7 -->
+<section class="slide cover">
+<div class="content">
+
+<h1>Integração Concluída 🎉</h1>
+
+<p>
+Agora você já conhece as principais diretrizes tecnológicas da empresa.
+</p>
+
+<button class="finish-btn">
+Finalizar
+</button>
+
+</div>
+</section>
 
 <!-- NAV -->
 <div class="nav">
 <button id="prevBtn" onclick="prevSlide()">◀ Voltar</button>
-<button onclick="nextSlide()">Próximo ▶</button>
+
+<button id="nextBtn" onclick="nextSlide()">
+Próximo ▶
+</button>
 </div>
 
 <script>
 let current = 0;
 
 const evaImages = [
-  "eva-apresentando.png",
-  "eva-apresentando.png",
-  "eva-apontando.png",
-  "eva-computador.png",
-  "eva-apontando.png",
-  "eva-negando.png",
-  "eva-computador.png",
-  "eva-apresentando.png",
-  "eva-apontando.png",
-  "eva-final.png"
+    "eva-apresentando.png",
+    "eva-apontando.png",
+    "eva-computador.png",
+    "eva-apontando.png",
+    "eva-negando.png",
+    "eva-computador.png",
+    "eva-final.png"
 ];
 
 const evaMessages = [
-  "Olá! Eu sou a Eva 👋 Bem-vindo(a) à Econ Construtora.",
-  "Vou te apresentar as diretrizes de tecnologia.",
-  "Vamos começar pelo primeiro acesso 🔐",
-  "A segurança da sua conta é fundamental.",
-  "Ferramentas corporativas fazem parte do dia a dia.",
-  "Fique atento a links e mensagens suspeitas.",
-  "Cuide bem dos equipamentos corporativos.",
-  "Esse é o time de TI que vai te apoiar.",
-  "Em caso de dúvida, chame a TI.",
-  "Parabéns! Integração concluída 🎉"
+    "Olá! Eu sou a Eva 👋 Bem-vindo(a) à Econ Construtora.",
+    "Vamos começar pelo primeiro acesso 🔐",
+    "A segurança da sua conta é fundamental.",
+    "Ferramentas corporativas fazem parte do dia a dia.",
+    "Cuide bem dos equipamentos corporativos.",
+    "Em caso de dúvida, chame a TI.",
+    "Parabéns! Integração concluída 🎉"
 ];
 
-function getSlides(){return document.querySelectorAll(".slide");}
+function getSlides(){
+    return document.querySelectorAll(".slide");
+}
 
 function showSlide(index){
+
     const slides = getSlides();
-    slides.forEach(s => s.classList.remove("active"));
+
+    slides.forEach(slide=>{
+        slide.classList.remove("active");
+    });
+
     slides[index].classList.add("active");
+
     updateProgress(index);
     updateButtons();
     updateEva();
-    window.scrollTo({top:0,behavior:"smooth"});
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
 }
 
-function nextSlide(){if(current < getSlides().length-1){current++;showSlide(current);}}
-function prevSlide(){if(current>0){current--;showSlide(current);}}
+function nextSlide(){
+
+    const slides = getSlides();
+
+    if(current < slides.length - 1){
+        current++;
+        showSlide(current);
+    }
+}
+
+function prevSlide(){
+
+    if(current > 0){
+        current--;
+        showSlide(current);
+    }
+}
 
 function updateProgress(i){
+
+    const total = getSlides().length - 1;
+
     document.getElementById("progress").style.width =
-    (i/(getSlides().length-1))*100 + "%";
+        (i / total) * 100 + "%";
 }
 
 function updateButtons(){
+
+    const slides = getSlides();
+
     document.getElementById("prevBtn").style.display =
-    current===0 ? "none" : "inline-block";
+        current === 0 ? "none" : "inline-block";
+
+    document.getElementById("nextBtn").style.display =
+        current === slides.length - 1 ? "none" : "inline-block";
 }
 
 function updateEva(){
-    document.getElementById("eva").src = evaImages[current] || evaImages[0];
-    document.getElementById("evaMsg").innerText = evaMessages[current] || "";
+
+    document.getElementById("eva").src =
+        evaImages[current] || evaImages[0];
+
+    document.getElementById("evaMsg").innerText =
+        evaMessages[current] || "";
 }
 
 function getNome(){
-    return new URLSearchParams(window.location.search).get("nome") || "Colaborador";
+
+    return new URLSearchParams(window.location.search)
+        .get("nome") || "Colaborador";
 }
 
-document.getElementById("welcome").innerText = "Bem-vindo, " + getNome();
-updateButtons();
-updateEva();
-showSlide(0)
+document.getElementById("welcome").innerText =
+    "Bem-vindo, " + getNome();
+
+showSlide(0);
 </script>
 
 </body>
 </html>
-``
