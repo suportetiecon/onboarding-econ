@@ -46,6 +46,62 @@ body{
     transition:width .4s ease;
 }
 
+/* EVA */
+
+.eva{
+    position:fixed;
+    right:30px;
+    bottom:90px;
+    width:210px;
+    z-index:998;
+    pointer-events:none;
+    transition:all .4s ease;
+    filter:drop-shadow(0 12px 20px rgba(0,0,0,.15));
+    animation:float 3s ease-in-out infinite;
+}
+
+.eva-msg{
+    position:fixed;
+    right:240px;
+    bottom:170px;
+    max-width:320px;
+    background:white;
+    padding:18px 20px;
+    border-radius:18px;
+    box-shadow:0 10px 24px rgba(0,0,0,.12);
+    font-size:15px;
+    line-height:1.6;
+    z-index:999;
+    transition:all .3s ease;
+}
+
+.eva-msg::after{
+    content:"";
+    position:absolute;
+    right:-10px;
+    bottom:20px;
+    width:20px;
+    height:20px;
+    background:white;
+    transform:rotate(45deg);
+}
+
+@keyframes float{
+
+    0%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-8px);
+    }
+
+    100%{
+        transform:translateY(0);
+    }
+
+}
+
 /* SLIDES */
 
 .slide{
@@ -242,19 +298,6 @@ button:hover{
     background:var(--cyan);
 }
 
-/* FOOTER */
-
-.footer{
-    position:absolute;
-    bottom:25px;
-    left:60px;
-    right:60px;
-    display:flex;
-    justify-content:space-between;
-    font-size:13px;
-    color:#7d8792;
-}
-
 /* RESPONSIVO */
 
 @media(max-width:768px){
@@ -279,9 +322,16 @@ button:hover{
         font-size:18px;
     }
 
-    .footer{
-        left:24px;
-        right:24px;
+    .eva{
+        width:130px;
+        right:10px;
+    }
+
+    .eva-msg{
+        right:120px;
+        bottom:150px;
+        max-width:220px;
+        font-size:13px;
     }
 
 }
@@ -292,6 +342,21 @@ button:hover{
 <body>
 
 <div id="progress" class="progress"></div>
+
+<!-- EVA -->
+
+<img
+id="eva"
+class="eva"
+src="eva-apresentando.jpg"
+>
+
+<div
+class="eva-msg"
+id="evaMsg"
+>
+Olá! Eu sou a Eva 👋
+</div>
 
 <!-- 1 -->
 
@@ -747,6 +812,48 @@ Próximo ▶
 
 let current = 0;
 
+const evaImages = [
+
+"eva-apresentando.jpg",
+"eva-apresentando.jpg",
+"eva-apresentando.jpg",
+"eva-apontando.jpg",
+"eva-computador.jpg",
+"eva-apontando.jpg",
+"eva-negando.jpg",
+"eva-computador.jpg",
+"eva-apresentando.jpg",
+"eva-apontando.jpg",
+"eva-final.jpg"
+
+];
+
+const evaMessages = [
+
+"Olá! Eu sou a Eva 👋 Bem-vindo(a) à Econ Construtora.",
+
+"Vou te apresentar as principais orientações de tecnologia e segurança da empresa.",
+
+"Vamos começar configurando seu primeiro acesso de forma segura 🔐",
+
+"Lembre-se: sua senha é pessoal e nunca deve ser compartilhada.",
+
+"O Teams e o Outlook serão ferramentas essenciais no seu dia a dia 💻",
+
+"Fique atento a links suspeitos, anexos desconhecidos e tentativas de phishing.",
+
+"Os equipamentos corporativos devem ser utilizados com responsabilidade.",
+
+"Esse é o time de Tecnologia que estará ao seu lado sempre que precisar 🚀",
+
+"Precisando de ajuda? A equipe de TI está pronta para apoiar você.",
+
+"Segurança da informação é responsabilidade de todos nós 🤝",
+
+"Parabéns! Sua integração tecnológica foi concluída com sucesso 🎉"
+
+];
+
 function getSlides(){
     return document.querySelectorAll(".slide");
 }
@@ -763,11 +870,13 @@ function showSlide(index){
 
     updateProgress(index);
     updateButtons();
+    updateEva();
 
     window.scrollTo({
         top:0,
         behavior:"smooth"
     });
+
 }
 
 function nextSlide(){
@@ -775,8 +884,10 @@ function nextSlide(){
     const slides = getSlides();
 
     if(current < slides.length -1){
+
         current++;
         showSlide(current);
+
     }
 
 }
@@ -784,8 +895,10 @@ function nextSlide(){
 function prevSlide(){
 
     if(current > 0){
+
         current--;
         showSlide(current);
+
     }
 
 }
@@ -793,22 +906,48 @@ function prevSlide(){
 function updateProgress(index){
 
     const slides = getSlides();
-    const progress = document.getElementById("progress");
 
-    let percent = (index / (slides.length -1)) * 100;
+    const progress =
+    document.getElementById("progress");
 
-    progress.style.width = percent + "%";
+    let percent =
+    (index / (slides.length -1)) * 100;
+
+    progress.style.width =
+    percent + "%";
+
 }
 
 function updateButtons(){
 
-    const prevBtn = document.getElementById("prevBtn");
+    const prevBtn =
+    document.getElementById("prevBtn");
 
     if(current === 0){
+
         prevBtn.style.display = "none";
+
     }else{
+
         prevBtn.style.display = "inline-block";
+
     }
+
+}
+
+function updateEva(){
+
+    const eva =
+    document.getElementById("eva");
+
+    const msg =
+    document.getElementById("evaMsg");
+
+    eva.src =
+    evaImages[current] || evaImages[0];
+
+    msg.innerText =
+    evaMessages[current] || "";
 
 }
 
@@ -822,7 +961,8 @@ function finalizar(){
 
 function getNome(){
 
-    const params = new URLSearchParams(window.location.search);
+    const params =
+    new URLSearchParams(window.location.search);
 
     return params.get("nome") || "Colaborador";
 
@@ -846,6 +986,7 @@ document.addEventListener("keydown",(e)=>{
 });
 
 updateButtons();
+updateEva();
 
 </script>
 
