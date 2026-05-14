@@ -4,11 +4,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Integração Tecnológica - Econ Construtora</title>
 
 <style>
-/* (seu CSS ficou perfeito, mantive igual) */
 *{margin:0;padding:0;box-sizing:border-box;}
 
 :root{
@@ -29,12 +27,27 @@ body{
     color:var(--text);
 }
 
+/* PROGRESS */
+.progress{
+    position:fixed;
+    top:0;
+    left:0;
+    width:0%;
+    height:6px;
+    background:var(--cyan);
+    z-index:9999;
+    transition:width .4s ease;
+}
+
 /* EVA */
 .eva{
     position:fixed;
     right:30px;
     bottom:90px;
     width:210px;
+    z-index:998;
+    pointer-events:none;
+    animation:float 3s ease-in-out infinite;
 }
 
 .eva-msg{
@@ -45,37 +58,145 @@ body{
     background:white;
     padding:18px 20px;
     border-radius:18px;
+    box-shadow:0 10px 24px rgba(0,0,0,.12);
+    font-size:15px;
+    line-height:1.6;
+    z-index:999;
+}
+
+.eva-msg::after{
+    content:"";
+    position:absolute;
+    right:-10px;
+    bottom:20px;
+    width:20px;
+    height:20px;
+    background:white;
+    transform:rotate(45deg);
+}
+
+@keyframes float{
+    0%{transform:translateY(0);}
+    50%{transform:translateY(-8px);}
+    100%{transform:translateY(0);}
 }
 
 /* SLIDES */
-.slide{position:absolute;width:100%;min-height:100vh;opacity:0;}
-.slide.active{opacity:1;}
+.slide{
+    position:absolute;
+    width:100%;
+    min-height:100vh;
+    padding:70px 60px 120px;
+    opacity:0;
+    transform:translateX(40px);
+    transition:opacity .45s ease, transform .45s ease;
+}
 
-.nav{position:fixed;bottom:25px;width:100%;text-align:center;}
+.slide.active{
+    opacity:1;
+    transform:translateX(0);
+    z-index:2;
+}
 
-button{padding:12px 20px;}
+/* COVER */
+.cover{
+    background:linear-gradient(135deg,var(--navy),var(--navy2));
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+}
+
+.cover h1{
+    font-size:58px;
+    margin-bottom:20px;
+}
+
+.cover p{
+    font-size:24px;
+    line-height:1.7;
+}
+
+/* CONTENT */
+.content{
+    max-width:1200px;
+    margin:auto;
+}
+
+/* NAV */
+.nav{
+    position:fixed;
+    bottom:25px;
+    width:100%;
+    display:flex;
+    justify-content:center;
+    gap:12px;
+    z-index:999;
+}
+
+button{
+    padding:14px 24px;
+    border:none;
+    border-radius:10px;
+    background:var(--navy);
+    color:white;
+    cursor:pointer;
+    font-size:15px;
+}
+
+.start-btn{
+    margin-top:30px;
+    background:var(--green);
+    color:var(--navy);
+    font-weight:700;
+}
+
+.finish-btn{
+    background:var(--cyan);
+}
 </style>
 </head>
 
 <body>
 
-<div id="progress"></div>
+<div id="progress" class="progress"></div>
 
 <!-- EVA -->
 <img id="eva" class="eva" src="eva-apresentando.png">
+<div class="eva-msg" id="evaMsg">Olá! Eu sou a Eva 👋</div>
 
-<div class="eva-msg" id="evaMsg">
-Olá! Eu sou a Eva 👋
-</div>
-
-<!-- SLIDE -->
-<section class="slide active">
+<!-- SLIDE 1 -->
+<section class="slide cover active">
 <div class="content">
 <h1 id="welcome">Bem-vindo</h1>
+<p>Programa de Integração Tecnológica<br>Segurança • Acessos • Recursos Corporativos</p>
+<button class="start-btn" onclick="nextSlide()">Iniciar Integração</button>
+</div>
+</section>
 
-<button onclick="nextSlide()">
-Iniciar Integração
-</button>
+<!-- SLIDE 2 -->
+<section class="slide">
+<div class="content">
+<h1>Objetivo da Integração</h1>
+<p>Diretrizes sobre acessos, segurança da informação e uso de recursos corporativos.</p>
+</div>
+</section>
+
+<!-- SLIDE 3 -->
+<section class="slide">
+<div class="content">
+<h1>Primeiro Acesso</h1>
+<p>CTRL + ALT + DEL → Alterar senha</p>
+</div>
+</section>
+
+<!-- SLIDE FINAL -->
+<section class="slide cover">
+<div class="content">
+<h1>🎉 Integração concluída</h1>
+<p>Conte sempre com a equipe de TI.</p>
+<button class="finish-btn" onclick="finalizar()">Finalizar Integração</button>
 </div>
 </section>
 
@@ -86,21 +207,20 @@ Iniciar Integração
 </div>
 
 <script>
-
 let current = 0;
 
 const evaImages = [
-"eva-apresentando.png",
-"eva-apontando.png",
-"eva-computador.png",
-"eva-final.png"
+  "eva-apresentando.png",
+  "eva-apresentando.png",
+  "eva-apontando.png",
+  "eva-final.png"
 ];
 
 const evaMessages = [
-"Olá! Eu sou a Eva 👋 Bem-vindo(a)",
-"Vamos começar 🔐",
-"Fique atento à segurança",
-"Parabéns 🎉"
+  "Olá! Eu sou a Eva 👋 Bem-vindo(a) à Econ Construtora.",
+  "Vou te apresentar as diretrizes de tecnologia.",
+  "Agora vamos cuidar da segurança do seu acesso 🔐",
+  "Parabéns! Integração concluída 🎉"
 ];
 
 function getSlides(){
@@ -109,16 +229,14 @@ function getSlides(){
 
 function showSlide(index){
     const slides = getSlides();
-
     slides.forEach(s => s.classList.remove("active"));
     slides[index].classList.add("active");
-
+    updateProgress(index);
     updateEva();
 }
 
 function nextSlide(){
-    const slides = getSlides();
-    if(current < slides.length -1){
+    if(current < getSlides().length -1){
         current++;
         showSlide(current);
     }
@@ -131,12 +249,18 @@ function prevSlide(){
     }
 }
 
-function updateEva(){
-    const eva = document.getElementById("eva");
-    const msg = document.getElementById("evaMsg");
+function updateProgress(index){
+    const percent = (index / (getSlides().length -1)) * 100;
+    document.getElementById("progress").style.width = percent + "%";
+}
 
-    eva.src = evaImages[current] || evaImages[0];
-    msg.innerText = evaMessages[current] || "";
+function updateEva(){
+    document.getElementById("eva").src = evaImages[current] || evaImages[0];
+    document.getElementById("evaMsg").innerText = evaMessages[current] || "";
+}
+
+function finalizar(){
+    alert("✅ Integração finalizada com sucesso!");
 }
 
 function getNome(){
@@ -144,11 +268,8 @@ function getNome(){
     return params.get("nome") || "Colaborador";
 }
 
-document.getElementById("welcome").innerText =
-"Bem-vindo, " + getNome();
-
+document.getElementById("welcome").innerText = "Bem-vindo, " + getNome();
 updateEva();
-
 </script>
 
 </body>
