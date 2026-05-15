@@ -39,9 +39,9 @@ body{
 
     font-family:'Segoe UI',Arial,sans-serif;
 
-    color:var(--text);
-
     overflow:hidden;
+
+    color:var(--text);
 
     background:
     radial-gradient(
@@ -57,18 +57,21 @@ body{
 
 }
 
-/* =========================================
-   PROGRESS
-========================================= */
+/* =====================================
+PROGRESS
+===================================== */
 
 .progress{
 
     position:fixed;
+
     top:0;
     left:0;
 
     width:0%;
     height:6px;
+
+    z-index:9999;
 
     background:
     linear-gradient(
@@ -80,15 +83,13 @@ body{
     box-shadow:
     0 0 18px rgba(0,167,215,.45);
 
-    z-index:9999;
-
     transition:width .45s ease;
 
 }
 
-/* =========================================
-   SLIDES
-========================================= */
+/* =====================================
+SLIDES
+===================================== */
 
 .slide{
 
@@ -100,7 +101,7 @@ body{
 
     overflow-y:auto;
 
-    padding:70px 60px 140px;
+    padding:70px 60px 150px;
 
     opacity:0;
     visibility:hidden;
@@ -131,9 +132,9 @@ body{
 
 }
 
-/* =========================================
-   COVER
-========================================= */
+/* =====================================
+COVER
+===================================== */
 
 .cover{
 
@@ -156,8 +157,10 @@ body{
 
 .cover h1{
 
-    font-size:62px;
+    font-size:60px;
+
     margin-bottom:20px;
+
     line-height:1.1;
 
 }
@@ -165,25 +168,25 @@ body{
 .cover p{
 
     font-size:24px;
-    line-height:1.7;
-    max-width:900px;
 
-    opacity:.95;
+    line-height:1.7;
+
+    max-width:900px;
 
 }
 
-/* =========================================
-   CONTENT
-========================================= */
+/* =====================================
+CONTENT
+===================================== */
 
 .content{
     max-width:1200px;
     margin:auto;
 }
 
-/* =========================================
-   TOP
-========================================= */
+/* =====================================
+TITLES
+===================================== */
 
 .top{
 
@@ -199,9 +202,9 @@ body{
     width:10px;
     height:60px;
 
-    background:var(--cyan);
-
     border-radius:20px;
+
+    background:var(--cyan);
 
     margin-right:18px;
 
@@ -216,9 +219,9 @@ body{
 
 }
 
-/* =========================================
-   TEXT
-========================================= */
+/* =====================================
+TEXT
+===================================== */
 
 .text{
 
@@ -231,9 +234,9 @@ body{
     margin-bottom:20px;
 }
 
-/* =========================================
-   HIGHLIGHT
-========================================= */
+/* =====================================
+HIGHLIGHT
+===================================== */
 
 .highlight{
 
@@ -255,9 +258,9 @@ body{
 
 }
 
-/* =========================================
-   WARNING
-========================================= */
+/* =====================================
+WARNING
+===================================== */
 
 .warning{
 
@@ -279,9 +282,9 @@ body{
 
 }
 
-/* =========================================
-   CARDS
-========================================= */
+/* =====================================
+CARDS
+===================================== */
 
 .cards{
 
@@ -291,8 +294,6 @@ body{
     repeat(auto-fit,minmax(280px,1fr));
 
     gap:22px;
-
-    align-items:stretch;
 
 }
 
@@ -317,8 +318,7 @@ body{
 
     opacity:0;
 
-    transform:
-    translateY(20px);
+    transform:translateY(20px);
 
     animation:
     cardIn .55s ease forwards;
@@ -361,9 +361,9 @@ body{
 .card:nth-child(5){animation-delay:.25s;}
 .card:nth-child(6){animation-delay:.3s;}
 
-/* =========================================
-   TIMELINE
-========================================= */
+/* =====================================
+TIMELINE
+===================================== */
 
 .timeline{
 
@@ -391,21 +391,22 @@ body{
 
 .step h3{
 
-    color:var(--navy);
-
     margin-bottom:10px;
+
+    color:var(--navy);
 
 }
 
-/* =========================================
-   NAV
-========================================= */
+/* =====================================
+BUTTONS
+===================================== */
 
 .nav{
 
     position:fixed;
 
     bottom:25px;
+
     width:100%;
 
     display:flex;
@@ -417,15 +418,11 @@ body{
 
 }
 
-/* =========================================
-   BUTTONS
-========================================= */
-
 button{
 
-    border:none;
-
     padding:14px 26px;
+
+    border:none;
 
     border-radius:12px;
 
@@ -433,8 +430,6 @@ button{
 
     font-size:15px;
     font-weight:600;
-
-    letter-spacing:.2px;
 
     transition:.25s;
 
@@ -449,8 +444,7 @@ button{
 
 button:hover{
 
-    transform:
-    translateY(-2px);
+    transform:translateY(-2px);
 
     background:var(--navy2);
 
@@ -472,9 +466,9 @@ button:hover{
     background:var(--cyan);
 }
 
-/* =========================================
-   COUNTER
-========================================= */
+/* =====================================
+COUNTER
+===================================== */
 
 .slide-counter{
 
@@ -494,73 +488,98 @@ button:hover{
 
 }
 
-/* =========================================
-   EVA
-========================================= */
+/* =====================================
+EVA ASSISTANT
+===================================== */
 
-.eva{
+.eva-assistant{
 
     position:fixed;
 
-    right:28px;
+    right:30px;
     bottom:110px;
 
-    width:110px;
-    height:110px;
-
-    border-radius:50%;
-
-    background:
-    linear-gradient(
-        135deg,
-        var(--cyan),
-        var(--navy2)
-    );
+    width:340px;
 
     display:flex;
-    align-items:center;
-    justify-content:center;
+    align-items:flex-end;
 
-    color:white;
-
-    font-size:42px;
-    font-weight:700;
-
-    box-shadow:
-    0 20px 50px rgba(0,0,0,.18);
+    gap:14px;
 
     z-index:998;
+
+    transition:.4s ease;
+
+}
+
+.eva-avatar{
+
+    width:120px;
 
     animation:
     float 4s ease-in-out infinite;
 
+    filter:
+    drop-shadow(
+        0 20px 35px rgba(0,0,0,.18)
+    );
+
 }
 
-/* =========================================
-   FOOTER
-========================================= */
+.eva-avatar img{
 
-.footer{
+    width:100%;
+
+    display:block;
+
+}
+
+.eva-message{
+
+    position:relative;
+
+    background:white;
+
+    padding:18px 20px;
+
+    border-radius:22px;
+
+    box-shadow:
+    0 12px 28px rgba(0,0,0,.10);
+
+    font-size:15px;
+
+    line-height:1.7;
+
+    color:var(--text);
+
+    animation:
+    fadeMessage .5s ease;
+
+}
+
+.eva-message::after{
+
+    content:"";
 
     position:absolute;
 
-    bottom:30px;
+    right:100%;
 
-    left:60px;
-    right:60px;
+    bottom:18px;
 
-    display:flex;
-    justify-content:space-between;
+    border-width:10px;
 
-    font-size:13px;
+    border-style:solid;
 
-    color:#7d8792;
+    border-color:
+    transparent white transparent transparent;
 
 }
 
-/* =========================================
-   ANIMATIONS
-========================================= */
+/* =====================================
+ANIMATIONS
+===================================== */
 
 @keyframes float{
 
@@ -591,14 +610,36 @@ button:hover{
 
 }
 
-/* =========================================
-   RESPONSIVE
-========================================= */
+@keyframes fadeMessage{
+
+    from{
+
+        opacity:0;
+
+        transform:
+        translateY(10px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:
+        translateY(0);
+
+    }
+
+}
+
+/* =====================================
+RESPONSIVE
+===================================== */
 
 @media(max-width:768px){
 
     .slide{
-        padding:40px 24px 140px;
+        padding:40px 24px 160px;
     }
 
     .cover h1{
@@ -617,21 +658,23 @@ button:hover{
         font-size:18px;
     }
 
-    .eva{
+    .eva-assistant{
 
-        width:80px;
-        height:80px;
+        width:100%;
 
-        font-size:28px;
+        right:0;
+        bottom:90px;
 
-        right:18px;
-        bottom:100px;
+        padding:0 16px;
 
     }
 
-    .footer{
-        left:24px;
-        right:24px;
+    .eva-avatar{
+        width:90px;
+    }
+
+    .eva-message{
+        font-size:14px;
     }
 
 }
@@ -641,19 +684,36 @@ button:hover{
 
 <body>
 
-<div id="progress" class="progress"></div>
+<div class="progress" id="progress"></div>
 
-<div class="eva">
-EVA
+<!-- EVA -->
+
+<div class="eva-assistant">
+
+    <div class="eva-avatar">
+        <img
+        id="evaImage"
+        src="eva-apresentando.png"
+        alt="EVA">
+    </div>
+
+    <div
+    class="eva-message"
+    id="evaMessage">
+
+    Olá 👋
+
+    </div>
+
 </div>
 
 <div class="slide-counter" id="counter">
 Slide 1 de 11
 </div>
 
-<!-- =========================================
-     1
-========================================= -->
+<!-- =====================================
+SLIDE 1
+===================================== -->
 
 <section class="slide cover active">
 
@@ -681,9 +741,9 @@ Iniciar Integração
 
 </section>
 
-<!-- =========================================
-     2
-========================================= -->
+<!-- =====================================
+SLIDE 2
+===================================== -->
 
 <section class="slide">
 
@@ -718,9 +778,9 @@ O cumprimento destas diretrizes é obrigatório e faz parte das responsabilidade
 
 </section>
 
-<!-- =========================================
-     3
-========================================= -->
+<!-- =====================================
+SLIDE 3
+===================================== -->
 
 <section class="slide">
 
@@ -754,9 +814,9 @@ O cumprimento destas diretrizes é obrigatório e faz parte das responsabilidade
 
 </section>
 
-<!-- =========================================
-     4
-========================================= -->
+<!-- =====================================
+SLIDE 4
+===================================== -->
 
 <section class="slide">
 
@@ -795,9 +855,9 @@ O cumprimento destas diretrizes é obrigatório e faz parte das responsabilidade
 
 </section>
 
-<!-- =========================================
-     5
-========================================= -->
+<!-- =====================================
+SLIDE 5
+===================================== -->
 
 <section class="slide">
 
@@ -836,9 +896,9 @@ O cumprimento destas diretrizes é obrigatório e faz parte das responsabilidade
 
 </section>
 
-<!-- =========================================
-     6
-========================================= -->
+<!-- =====================================
+SLIDE 6
+===================================== -->
 
 <section class="slide">
 
@@ -883,9 +943,9 @@ Nenhuma ação deve ser executada quando houver suspeita de risco ou comprometim
 
 </section>
 
-<!-- =========================================
-     7
-========================================= -->
+<!-- =====================================
+SLIDE 7
+===================================== -->
 
 <section class="slide">
 
@@ -924,9 +984,9 @@ Nenhuma ação deve ser executada quando houver suspeita de risco ou comprometim
 
 </section>
 
-<!-- =========================================
-     8
-========================================= -->
+<!-- =====================================
+SLIDE 8
+===================================== -->
 
 <section class="slide">
 
@@ -975,9 +1035,9 @@ Nenhuma ação deve ser executada quando houver suspeita de risco ou comprometim
 
 </section>
 
-<!-- =========================================
-     9
-========================================= -->
+<!-- =====================================
+SLIDE 9
+===================================== -->
 
 <section class="slide">
 
@@ -1017,9 +1077,9 @@ Ao abrir um chamado informe:
 
 </section>
 
-<!-- =========================================
-     10
-========================================= -->
+<!-- =====================================
+SLIDE 10
+===================================== -->
 
 <section class="slide">
 
@@ -1055,9 +1115,9 @@ O uso inadequado dos recursos tecnológicos pode gerar impactos operacionais, ri
 
 </section>
 
-<!-- =========================================
-     11
-========================================= -->
+<!-- =====================================
+SLIDE 11
+===================================== -->
 
 <section class="slide cover">
 
@@ -1087,9 +1147,7 @@ Finalizar Integração
 
 </section>
 
-<!-- =========================================
-     NAV
-========================================= -->
+<!-- NAV -->
 
 <div class="nav">
 
@@ -1106,6 +1164,103 @@ Próximo ▶
 <script>
 
 let current = 0;
+
+/* =====================================
+NOME DINÂMICO
+===================================== */
+
+function getNome(){
+
+    const params =
+    new URLSearchParams(window.location.search);
+
+    return params.get("nome")
+    || "Colaborador";
+
+}
+
+const nomeUsuario = getNome();
+
+document.getElementById("welcome").innerText =
+"Bem-vindo, " + nomeUsuario;
+
+/* =====================================
+EVA CONTENT
+===================================== */
+
+const evaContent = {
+
+    0:{
+        image:"eva-apresentando.png",
+        text:
+        `Olá ${nomeUsuario} 👋\n\nEu sou a EVA e vou ajudar você durante toda a integração tecnológica da Econ Construtora.`
+    },
+
+    1:{
+        image:"eva-apontando.png",
+        text:
+        "Aqui você conhecerá os principais recursos tecnológicos, acessos e boas práticas da empresa."
+    },
+
+    2:{
+        image:"eva-computador.png",
+        text:
+        "Sua primeira ação será alterar a senha corporativa e validar seus acessos."
+    },
+
+    3:{
+        image:"eva-negando.png",
+        text:
+        "Nunca compartilhe senhas ou códigos MFA. Seus acessos são pessoais e intransferíveis."
+    },
+
+    4:{
+        image:"eva-computador.png",
+        text:
+        "Teams, Outlook e sistemas internos fazem parte da rotina corporativa diária."
+    },
+
+    5:{
+        image:"eva-negando.png",
+        text:
+        "Se algo parecer suspeito, não clique. Em caso de dúvida, fale com a TI."
+    },
+
+    6:{
+        image:"eva-apontando.png",
+        text:
+        "Os equipamentos corporativos devem ser utilizados exclusivamente para atividades profissionais."
+    },
+
+    7:{
+        image:"eva-apresentando.png",
+        text:
+        "Esse é o time responsável por apoiar você nas demandas de tecnologia."
+    },
+
+    8:{
+        image:"eva-computador.png",
+        text:
+        "Ao abrir chamados, tente descrever o problema com o máximo de detalhes possível."
+    },
+
+    9:{
+        image:"eva-negando.png",
+        text:
+        "A segurança da informação depende da colaboração de todos os colaboradores."
+    },
+
+    10:{
+        image:"eva-final.png",
+        text:
+        `Parabéns ${nomeUsuario} 🎉\n\nSua integração tecnológica foi concluída com sucesso!`
+    }
+
+};
+
+/* =====================================
+SLIDES
+===================================== */
 
 function getSlides(){
 
@@ -1130,6 +1285,8 @@ function showSlide(index){
     updateButtons();
 
     updateCounter();
+
+    updateEva();
 
     slides[index].scrollTo({
         top:0,
@@ -1164,6 +1321,10 @@ function prevSlide(){
 
 }
 
+/* =====================================
+PROGRESS
+===================================== */
+
 function updateProgress(index){
 
     const slides = getSlides();
@@ -1175,6 +1336,10 @@ function updateProgress(index){
     percent + "%";
 
 }
+
+/* =====================================
+BUTTONS
+===================================== */
 
 function updateButtons(){
 
@@ -1197,6 +1362,10 @@ function updateButtons(){
 
 }
 
+/* =====================================
+COUNTER
+===================================== */
+
 function updateCounter(){
 
     const slides = getSlides();
@@ -1206,32 +1375,38 @@ function updateCounter(){
 
 }
 
+/* =====================================
+EVA
+===================================== */
+
+function updateEva(){
+
+    const eva =
+    evaContent[current];
+
+    document.getElementById("evaImage").src =
+    eva.image;
+
+    document.getElementById("evaMessage").innerHTML =
+    eva.text.replace(/\n/g,"<br>");
+
+}
+
+/* =====================================
+FINALIZAR
+===================================== */
+
 function finalizar(){
 
-    alert("✅ Integração finalizada com sucesso!");
+    alert(
+        `✅ ${nomeUsuario}, sua integração foi concluída com sucesso!`
+    );
 
 }
 
-/* =========================================
-   NOME DINÂMICO
-========================================= */
-
-function getNome(){
-
-    const params =
-    new URLSearchParams(window.location.search);
-
-    return params.get("nome")
-    || "Colaborador";
-
-}
-
-document.getElementById("welcome").innerText =
-"Bem-vindo, " + getNome();
-
-/* =========================================
-   EVENTS
-========================================= */
+/* =====================================
+EVENTS
+===================================== */
 
 document.getElementById("startBtn")
 .addEventListener("click", nextSlide);
@@ -1242,29 +1417,25 @@ document.getElementById("nextBtn")
 document.getElementById("prevBtn")
 .addEventListener("click", prevSlide);
 
-/* =========================================
-   KEYBOARD
-========================================= */
+/* =====================================
+KEYBOARD
+===================================== */
 
 document.addEventListener("keydown",(e)=>{
 
     if(e.key === "ArrowRight"){
-
         nextSlide();
-
     }
 
     if(e.key === "ArrowLeft"){
-
         prevSlide();
-
     }
 
 });
 
-/* =========================================
-   START
-========================================= */
+/* =====================================
+START
+===================================== */
 
 showSlide(0);
 
