@@ -641,36 +641,151 @@ ANIMATIONS
 RESPONSIVE
 ===================================== */
 
-@media(max-width:768px){
+@media(max-width:1400px){
+
+    .eva-assistant{
+
+        width:420px;
+
+        right:20px;
+        bottom:85px;
+
+    }
+
+    .eva-avatar{
+        width:180px;
+    }
+
+}
+
+/* NOTEBOOK */
+
+@media(max-width:1200px){
+
+    .eva-assistant{
+
+        width:340px;
+
+        right:15px;
+        bottom:80px;
+
+        gap:12px;
+
+    }
+
+    .eva-avatar{
+        width:140px;
+    }
+
+    .eva-message{
+
+        font-size:14px;
+
+        padding:16px;
+
+    }
+
+}
+
+/* NOTEBOOK PEQUENO */
+
+@media(max-width:1024px){
 
     .slide{
-        padding:40px 24px 160px;
-    }
-
-    .cover h1{
-        font-size:40px;
-    }
-
-    .cover p{
-        font-size:20px;
-    }
-
-    .title{
-        font-size:32px;
-    }
-
-    .text{
-        font-size:18px;
+        padding:40px 24px 220px;
     }
 
     .eva-assistant{
 
-        width:100%;
+        position:fixed;
 
-        right:0;
-        bottom:90px;
+        left:20px;
+        right:20px;
 
-        padding:0 16px;
+        bottom:70px;
+
+        width:auto;
+
+        align-items:center;
+
+        background:
+        rgba(255,255,255,.92);
+
+        backdrop-filter:blur(12px);
+
+        padding:14px;
+
+        border-radius:22px;
+
+        box-shadow:
+        0 12px 30px rgba(0,0,0,.12);
+
+    }
+
+    .eva-avatar{
+
+        width:110px;
+
+        flex-shrink:0;
+
+    }
+
+    .eva-message{
+
+        background:transparent;
+
+        box-shadow:none;
+
+        padding:0;
+
+        font-size:14px;
+
+        line-height:1.6;
+
+    }
+
+    .eva-message::after{
+        display:none;
+    }
+
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+    .slide{
+        padding:30px 20px 240px;
+    }
+
+    .cover h1{
+        font-size:36px;
+    }
+
+    .cover p{
+        font-size:18px;
+    }
+
+    .title{
+        font-size:28px;
+    }
+
+    .text{
+        font-size:17px;
+    }
+
+    .cards{
+        grid-template-columns:1fr;
+    }
+
+    .eva-assistant{
+
+        left:12px;
+        right:12px;
+
+        bottom:65px;
+
+        padding:12px;
 
     }
 
@@ -679,11 +794,26 @@ RESPONSIVE
     }
 
     .eva-message{
+        font-size:13px;
+    }
+
+    .nav{
+
+        bottom:15px;
+
+        gap:8px;
+
+    }
+
+    button{
+
+        padding:12px 18px;
+
         font-size:14px;
+
     }
 
 }
-
 </style>
 </head>
 
