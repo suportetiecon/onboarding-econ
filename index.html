@@ -2,13 +2,818 @@
 <html lang="pt-BR">
 
 <head>
-<meta charset="UTF-8"/>
+<meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
 <title>Integração Tecnológica - Econ Construtora</title>
 
 <style>
-/* (SEU CSS ORIGINAL — NÃO MEXI EM NADA) */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+:root{
+
+    --navy:#132f4c;
+    --navy2:#1d4d73;
+    --cyan:#00a7d7;
+    --cyan2:#43d4ff;
+    --green:#9BCB2B;
+
+    --light:#f4f7fa;
+    --text:#243041;
+    --border:#dce5ee;
+
+}
+
+html,
+body{
+    width:100%;
+    height:100%;
+}
+
+body{
+
+    font-family:'Segoe UI',Arial,sans-serif;
+
+    overflow:hidden;
+
+    color:var(--text);
+
+    background:
+    radial-gradient(
+        circle at top left,
+        rgba(0,167,215,.08),
+        transparent 30%
+    ),
+    linear-gradient(
+        180deg,
+        #f7fafd,
+        #eef3f8
+    );
+
+}
+
+/* =====================================
+PROGRESS
+===================================== */
+
+.progress{
+
+    position:fixed;
+
+    top:0;
+    left:0;
+
+    width:0%;
+    height:6px;
+
+    z-index:9999;
+
+    background:
+    linear-gradient(
+        90deg,
+        var(--cyan),
+        var(--cyan2)
+    );
+
+    box-shadow:
+    0 0 18px rgba(0,167,215,.45);
+
+    transition:width .45s ease;
+
+}
+
+/* =====================================
+SLIDES
+===================================== */
+
+.slide{
+
+    position:absolute;
+    inset:0;
+
+    width:100%;
+    height:100vh;
+
+    overflow-y:auto;
+
+    padding:70px 60px 150px;
+
+    opacity:0;
+    visibility:hidden;
+    pointer-events:none;
+
+    transform:
+    translateX(40px)
+    scale(.985);
+
+    transition:
+    opacity .55s ease,
+    transform .55s ease,
+    visibility .55s;
+
+}
+
+.slide.active{
+
+    opacity:1;
+    visibility:visible;
+    pointer-events:auto;
+
+    transform:
+    translateX(0)
+    scale(1);
+
+    z-index:2;
+
+}
+
+/* =====================================
+COVER
+===================================== */
+
+.cover{
+
+    background:
+    linear-gradient(
+        135deg,
+        var(--navy),
+        var(--navy2)
+    );
+
+    color:white;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    text-align:center;
+
+}
+
+.cover h1{
+
+    font-size:60px;
+
+    margin-bottom:20px;
+
+    line-height:1.1;
+
+}
+
+.cover p{
+
+    font-size:24px;
+
+    line-height:1.7;
+
+    max-width:900px;
+
+}
+
+/* =====================================
+CONTENT
+===================================== */
+
+.content{
+    max-width:1200px;
+    margin:auto;
+}
+
+/* =====================================
+TITLES
+===================================== */
+
+.top{
+
+    display:flex;
+    align-items:center;
+
+    margin-bottom:35px;
+
+}
+
+.bar{
+
+    width:10px;
+    height:60px;
+
+    border-radius:20px;
+
+    background:var(--cyan);
+
+    margin-right:18px;
+
+}
+
+.title{
+
+    font-size:42px;
+    font-weight:800;
+
+    color:var(--navy);
+
+}
+
+/* =====================================
+TEXT
+===================================== */
+
+.text{
+
+    font-size:22px;
+    line-height:1.8;
+
+}
+
+.text p{
+    margin-bottom:20px;
+}
+
+/* =====================================
+HIGHLIGHT
+===================================== */
+
+.highlight{
+
+    margin-top:30px;
+
+    padding:28px;
+
+    border-left:6px solid var(--cyan);
+
+    background:#eef8fd;
+
+    border-radius:18px;
+
+    font-size:20px;
+    line-height:1.8;
+
+    box-shadow:
+    0 10px 22px rgba(0,0,0,.04);
+
+}
+
+/* =====================================
+WARNING
+===================================== */
+
+.warning{
+
+    margin-top:30px;
+
+    padding:28px;
+
+    border-left:6px solid #f0a000;
+
+    background:#fff7eb;
+
+    border-radius:18px;
+
+    font-size:20px;
+    line-height:1.8;
+
+    box-shadow:
+    0 10px 22px rgba(0,0,0,.04);
+
+}
+
+/* =====================================
+CARDS
+===================================== */
+
+.cards{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(280px,1fr));
+
+    gap:22px;
+
+}
+
+.card{
+
+    background:white;
+
+    border:1px solid var(--border);
+
+    border-radius:22px;
+
+    padding:28px;
+
+    min-height:220px;
+
+    box-shadow:
+    0 10px 22px rgba(0,0,0,.05);
+
+    transition:
+    transform .25s ease,
+    box-shadow .25s ease;
+
+    opacity:0;
+
+    transform:translateY(20px);
+
+    animation:
+    cardIn .55s ease forwards;
+
+}
+
+.card:hover{
+
+    transform:
+    translateY(-6px);
+
+    box-shadow:
+    0 20px 38px rgba(0,0,0,.08);
+
+}
+
+.card h3{
+
+    color:var(--navy);
+
+    margin-bottom:12px;
+
+    font-size:22px;
+
+}
+
+.card p{
+
+    font-size:18px;
+    line-height:1.7;
+
+}
+
+/* STAGGER */
+
+.card:nth-child(1){animation-delay:.05s;}
+.card:nth-child(2){animation-delay:.1s;}
+.card:nth-child(3){animation-delay:.15s;}
+.card:nth-child(4){animation-delay:.2s;}
+.card:nth-child(5){animation-delay:.25s;}
+.card:nth-child(6){animation-delay:.3s;}
+
+/* =====================================
+TIMELINE
+===================================== */
+
+.timeline{
+
+    display:flex;
+    flex-direction:column;
+
+    gap:22px;
+
+}
+
+.step{
+
+    background:white;
+
+    border-left:8px solid var(--cyan);
+
+    border-radius:18px;
+
+    padding:24px;
+
+    box-shadow:
+    0 8px 18px rgba(0,0,0,.05);
+
+}
+
+.step h3{
+
+    margin-bottom:10px;
+
+    color:var(--navy);
+
+}
+
+/* =====================================
+BUTTONS
+===================================== */
+
+.nav{
+
+    position:fixed;
+
+    bottom:25px;
+
+    width:100%;
+
+    display:flex;
+    justify-content:center;
+
+    gap:12px;
+
+    z-index:999;
+
+}
+
+button{
+
+    padding:14px 26px;
+
+    border:none;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+    font-size:15px;
+    font-weight:600;
+
+    transition:.25s;
+
+    color:white;
+
+    background:var(--navy);
+
+    box-shadow:
+    0 6px 16px rgba(0,0,0,.08);
+
+}
+
+button:hover{
+
+    transform:translateY(-2px);
+
+    background:var(--navy2);
+
+}
+
+.start-btn{
+
+    margin-top:35px;
+
+    background:var(--green);
+
+    color:var(--navy);
+
+    font-weight:800;
+
+}
+
+.finish-btn{
+    background:var(--cyan);
+}
+
+/* =====================================
+COUNTER
+===================================== */
+
+.slide-counter{
+
+    position:fixed;
+
+    bottom:82px;
+
+    width:100%;
+
+    text-align:center;
+
+    font-size:14px;
+
+    color:#6d7885;
+
+    z-index:999;
+
+}
+
+/* =====================================
+EVA ASSISTANT
+===================================== */
+
+.eva-assistant{
+
+    position:fixed;
+
+    right:35px;
+    bottom:90px;
+
+    width:520px;
+
+    display:flex;
+    align-items:flex-end;
+
+    gap:20px;
+
+    z-index:998;
+
+    transition:.4s ease;
+
+}
+
+.eva-avatar{
+
+    width:240px;
+
+    animation:
+    float 4s ease-in-out infinite;
+
+    filter:
+    drop-shadow(
+        0 25px 45px rgba(0,0,0,.22)
+    );
+
+    flex-shrink:0;
+
+}
+
+.eva-avatar img{
+
+    width:100%;
+    height:auto;
+
+    display:block;
+
+}
+
+.eva-message{
+
+    position:relative;
+
+    background:white;
+
+    padding:22px 24px;
+
+    border-radius:24px;
+
+    box-shadow:
+    0 14px 30px rgba(0,0,0,.12);
+
+    font-size:17px;
+
+    line-height:1.8;
+
+    color:var(--text);
+
+    min-width:260px;
+
+    animation:
+    fadeMessage .5s ease;
+
+}
+
+.eva-message::after{
+
+    content:"";
+
+    position:absolute;
+
+    right:100%;
+
+    bottom:18px;
+
+    border-width:10px;
+
+    border-style:solid;
+
+    border-color:
+    transparent white transparent transparent;
+
+}
+
+/* =====================================
+ANIMATIONS
+===================================== */
+
+@keyframes float{
+
+    0%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-10px);
+    }
+
+    100%{
+        transform:translateY(0);
+    }
+
+}
+
+@keyframes cardIn{
+
+    to{
+
+        opacity:1;
+
+        transform:
+        translateY(0);
+
+    }
+
+}
+
+@keyframes fadeMessage{
+
+    from{
+
+        opacity:0;
+
+        transform:
+        translateY(10px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:
+        translateY(0);
+
+    }
+
+}
+
+/* =====================================
+RESPONSIVE
+===================================== */
+
+@media(max-width:1400px){
+
+    .eva-assistant{
+
+        width:420px;
+
+        right:20px;
+        bottom:85px;
+
+    }
+
+    .eva-avatar{
+        width:180px;
+    }
+
+}
+
+/* NOTEBOOK */
+
+@media(max-width:1200px){
+
+    .eva-assistant{
+
+        width:340px;
+
+        right:15px;
+        bottom:80px;
+
+        gap:12px;
+
+    }
+
+    .eva-avatar{
+        width:140px;
+    }
+
+    .eva-message{
+
+        font-size:14px;
+
+        padding:16px;
+
+    }
+
+}
+
+/* NOTEBOOK PEQUENO */
+
+@media(max-width:1024px){
+
+    .slide{
+        padding:40px 24px 220px;
+    }
+
+    .eva-assistant{
+
+        position:fixed;
+
+        left:20px;
+        right:20px;
+
+        bottom:70px;
+
+        width:auto;
+
+        align-items:center;
+
+        background:
+        rgba(255,255,255,.92);
+
+        backdrop-filter:blur(12px);
+
+        padding:14px;
+
+        border-radius:22px;
+
+        box-shadow:
+        0 12px 30px rgba(0,0,0,.12);
+
+    }
+
+    .eva-avatar{
+
+        width:110px;
+
+        flex-shrink:0;
+
+    }
+
+    .eva-message{
+
+        background:transparent;
+
+        box-shadow:none;
+
+        padding:0;
+
+        font-size:14px;
+
+        line-height:1.6;
+
+    }
+
+    .eva-message::after{
+        display:none;
+    }
+
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+    .slide{
+        padding:30px 20px 240px;
+    }
+
+    .cover h1{
+        font-size:36px;
+    }
+
+    .cover p{
+        font-size:18px;
+    }
+
+    .title{
+        font-size:28px;
+    }
+
+    .text{
+        font-size:17px;
+    }
+
+    .cards{
+        grid-template-columns:1fr;
+    }
+
+    .eva-assistant{
+
+        left:12px;
+        right:12px;
+
+        bottom:65px;
+
+        padding:12px;
+
+    }
+
+    .eva-avatar{
+        width:90px;
+    }
+
+    .eva-message{
+        font-size:13px;
+    }
+
+    .nav{
+
+        bottom:15px;
+
+        gap:8px;
+
+    }
+
+    button{
+
+        padding:12px 18px;
+
+        font-size:14px;
+
+    }
+
+}
 </style>
 </head>
 
@@ -16,14 +821,23 @@
 
 <div class="progress" id="progress"></div>
 
+<!-- EVA -->
+
 <div class="eva-assistant">
 
     <div class="eva-avatar">
-        <img id="evaImage" src="eva-apresentando.png" alt="EVA">
+        <img
+        id="evaImage"
+        src="eva-apresentando.png"
+        alt="EVA">
     </div>
 
-    <div class="eva-message" id="evaMessage">
-        Olá 👋
+    <div
+    class="eva-message"
+    id="evaMessage">
+
+    Olá 👋
+
     </div>
 
 </div>
@@ -32,7 +846,12 @@
 Slide 1 de 11
 </div>
 
+<!-- =====================================
+SLIDE 1
+===================================== -->
+
 <section class="slide cover active">
+
 <div class="content">
 
 <h1 id="welcome">
@@ -40,9 +859,13 @@ Bem-vindo
 </h1>
 
 <p>
+
 Programa de Integração Tecnológica
+
 <br><br>
+
 Segurança • Acessos • Recursos Corporativos
+
 </p>
 
 <button class="start-btn" id="startBtn">
@@ -50,45 +873,466 @@ Iniciar Integração
 </button>
 
 </div>
+
 </section>
 
-<!-- (RESTO DOS SLIDES — IGUAL AO SEU, NÃO PRECISA MEXER) -->
+<!-- =====================================
+SLIDE 2
+===================================== -->
+
+<section class="slide">
+
+<div class="content">
+
+<div class="top">
+<div class="bar"></div>
+<div class="title">Objetivo da Integração</div>
+</div>
+
+<div class="text">
+
+<p>
+Este material apresenta as principais diretrizes relacionadas ao uso dos recursos tecnológicos disponibilizados pela Econ Construtora.
+</p>
+
+<p>
+As orientações incluem acessos corporativos, segurança da informação, utilização adequada de equipamentos, comunicação corporativa e suporte técnico.
+</p>
+
+<div class="highlight">
+
+<strong>Importante:</strong>
+
+O cumprimento destas diretrizes é obrigatório e faz parte das responsabilidades do colaborador.
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- =====================================
+SLIDE 3
+===================================== -->
+
+<section class="slide">
+
+<div class="content">
+
+<div class="top">
+<div class="bar"></div>
+<div class="title">Primeiro Acesso</div>
+</div>
+
+<div class="timeline">
+
+<div class="step">
+<h3>1. Alteração de senha</h3>
+<p>Pressione CTRL + ALT + DEL e selecione “Alterar uma senha”.</p>
+</div>
+
+<div class="step">
+<h3>2. Nova autenticação</h3>
+<p>Utilize sua nova senha para acessar os recursos corporativos.</p>
+</div>
+
+<div class="step">
+<h3>3. Teste de acesso</h3>
+<p>Pressione Windows + L e realize um novo login para validar a alteração.</p>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- =====================================
+SLIDE 4
+===================================== -->
+
+<section class="slide">
+
+<div class="content">
+
+<div class="top">
+<div class="bar"></div>
+<div class="title">Identidade Digital e MFA</div>
+</div>
+
+<div class="cards">
+
+<div class="card">
+<h3>Credenciais Corporativas</h3>
+<p>Os acessos corporativos são individuais e vinculados ao colaborador.</p>
+</div>
+
+<div class="card">
+<h3>Proteção de Senhas</h3>
+<p>Nunca compartilhe sua senha ou código de autenticação.</p>
+</div>
+
+<div class="card">
+<h3>MFA Obrigatório</h3>
+<p>A autenticação multifator é obrigatória para acesso aos sistemas corporativos.</p>
+</div>
+
+<div class="card">
+<h3>Responsabilidade</h3>
+<p>Toda atividade realizada com seu usuário corporativo é de sua responsabilidade.</p>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- =====================================
+SLIDE 5
+===================================== -->
+
+<section class="slide">
+
+<div class="content">
+
+<div class="top">
+<div class="bar"></div>
+<div class="title">Ferramentas Corporativas</div>
+</div>
+
+<div class="cards">
+
+<div class="card">
+<h3>Outlook</h3>
+<p>Utilize o e-mail corporativo exclusivamente para atividades profissionais.</p>
+</div>
+
+<div class="card">
+<h3>Microsoft Teams</h3>
+<p>Canal oficial para comunicação corporativa e reuniões internas.</p>
+</div>
+
+<div class="card">
+<h3>Sistemas Internos</h3>
+<p>Os acessos são liberados conforme perfil e área de atuação.</p>
+</div>
+
+<div class="card">
+<h3>Conta Corporativa</h3>
+<p>Utilize sempre sua conta corporativa para autenticação nos sistemas.</p>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- =====================================
+SLIDE 6
+===================================== -->
+
+<section class="slide">
+
+<div class="content">
+
+<div class="top">
+<div class="bar"></div>
+<div class="title">Segurança da Informação</div>
+</div>
+
+<div class="cards">
+
+<div class="card">
+<h3>Proteção da Estação</h3>
+<p>Bloqueie o computador ao se ausentar da estação de trabalho.</p>
+</div>
+
+<div class="card">
+<h3>Links e Arquivos</h3>
+<p>Valide remetentes antes de abrir anexos ou links recebidos.</p>
+</div>
+
+<div class="card">
+<h3>Phishing</h3>
+<p>Desconfie de mensagens suspeitas ou solicitações incomuns.</p>
+</div>
+
+<div class="card">
+<h3>Dispositivos Externos</h3>
+<p>Não conecte dispositivos externos sem autorização da TI.</p>
+</div>
+
+</div>
+
+<div class="warning">
+
+Nenhuma ação deve ser executada quando houver suspeita de risco ou comprometimento de segurança.
+
+</div>
+
+</div>
+
+</section>
+
+<!-- =====================================
+SLIDE 7
+===================================== -->
+
+<section class="slide">
+
+<div class="content">
+
+<div class="top">
+<div class="bar"></div>
+<div class="title">Equipamentos Corporativos</div>
+</div>
+
+<div class="cards">
+
+<div class="card">
+<h3>Uso Profissional</h3>
+<p>Os equipamentos corporativos destinam-se exclusivamente às atividades profissionais.</p>
+</div>
+
+<div class="card">
+<h3>Instalação de Softwares</h3>
+<p>Não instalar softwares sem autorização prévia da TI.</p>
+</div>
+
+<div class="card">
+<h3>Conservação</h3>
+<p>O colaborador deve zelar pela conservação do equipamento recebido.</p>
+</div>
+
+<div class="card">
+<h3>Ocorrências</h3>
+<p>Perdas, danos ou falhas devem ser comunicados imediatamente.</p>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- =====================================
+SLIDE 8
+===================================== -->
+
+<section class="slide">
+
+<div class="content">
+
+<div class="top">
+<div class="bar"></div>
+<div class="title">Conheça o Time de Tecnologia</div>
+</div>
+
+<div class="cards">
+
+<div class="card">
+<h3>Emerson de Oliveira Viana</h3>
+<p>Gerente de TI</p>
+</div>
+
+<div class="card">
+<h3>Leandro da Silva Rocha</h3>
+<p>Coordenador de Sistemas</p>
+</div>
+
+<div class="card">
+<h3>Caio Xavier Moreno</h3>
+<p>Analista de Sistemas</p>
+</div>    
+
+<div class="card">
+<h3>Marcus Vinicius Moreira da Rocha</h3>
+<p>Coordenador de Sistemas</p>
+</div>
+
+<div class="card">
+<h3>Carlos Alberto Pereira Barreto</h3>
+<p>Analista de Infraestrutura</p>
+</div>
+
+<div class="card">
+<h3>Edinaldo Raimungo Barbosa Vieira</h3>
+<p>Analista de Infraestrutura</p>
+</div>
+
+<div class="card">
+<h3>Tiago Marques de Oliveira</h3>
+<p>Analista de Infraestrutura</p>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- =====================================
+SLIDE 9
+===================================== -->
+
+<section class="slide">
+
+<div class="content">
+
+<div class="top">
+<div class="bar"></div>
+<div class="title">Suporte de TI</div>
+</div>
+
+<div class="text">
+
+<p>
+Para dúvidas, incidentes ou problemas relacionados aos recursos tecnológicos da empresa, utilize os canais oficiais da TI.
+</p>
+
+<div class="highlight">
+
+<strong>chamados@econconstrutora.com.br</strong>
+
+<br><br>
+
+Ao abrir um chamado informe:
+
+<br><br>
+
+• Nome completo<br>
+• Área/departamento<br>
+• Descrição detalhada<br>
+• Prints quando necessário
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- =====================================
+SLIDE 10
+===================================== -->
+
+<section class="slide">
+
+<div class="content">
+
+<div class="top">
+<div class="bar"></div>
+<div class="title">Responsabilidade do Colaborador</div>
+</div>
+
+<div class="text">
+
+<p>
+O uso inadequado dos recursos tecnológicos pode gerar impactos operacionais, riscos de segurança e comprometimento de informações corporativas.
+</p>
+
+<div class="warning">
+
+<strong>O colaborador é responsável por:</strong>
+
+<br><br>
+
+• Utilizar os recursos corporativos adequadamente<br>
+• Cumprir as orientações de segurança<br>
+• Preservar informações confidenciais<br>
+• Reportar incidentes suspeitos
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- =====================================
+SLIDE 11
+===================================== -->
+
+<section class="slide cover">
+
+<div class="content">
+
+<h1>
+🎉 Integração concluída
+</h1>
+
+<p>
+
+A área de Tecnologia da Informação atua para garantir um ambiente seguro, estável e eficiente para as operações da Econ Construtora.
+
+<br><br>
+
+Sua colaboração é essencial para a proteção das informações corporativas e utilização adequada dos recursos tecnológicos.
+
+</p>
+
+<br><br>
+
+<button class="finish-btn" onclick="finalizar()">
+Finalizar Integração
+</button>
+
+</div>
+
+</section>
+
+<!-- NAV -->
+
+<div class="nav">
+
+<button id="prevBtn">
+◀ Voltar
+</button>
+
+<button id="nextBtn">
+Próximo ▶
+</button>
+
+</div>
 
 <script>
 
 let current = 0;
 
 /* =====================================
-NOME DINÂMICO MELHORADO 🔥
+NOME DINÂMICO
 ===================================== */
-
 function getNome(){
     const params = new URLSearchParams(window.location.search);
     return params.get("nome") || "Colaborador";
 }
 
-// Nome completo vindo da URL
+// pega nome completo com segurança
 const nomeCompleto = getNome().trim();
 
-// Pegar primeiro nome
-const primeiroNome = nomeCompleto.split(" ")[0];
+// valor padrão
+let nomeUsuario = "Colaborador";
 
-// Capitalizar
-function formatarNome(nome){
-    return nome.charAt(0).toUpperCase() + nome.slice(1).toLowerCase();
+// só processa se tiver nome
+if(nomeCompleto){
+    const primeiroNome = nomeCompleto.split(" ")[0];
+
+    nomeUsuario =
+        primeiroNome.charAt(0).toUpperCase() +
+        primeiroNome.slice(1).toLowerCase();
 }
 
-const nomeUsuario = formatarNome(primeiroNome);
-
-/* =====================================
-APLICAR NOME NA TELA
-===================================== */
-
 document.getElementById("welcome").innerText =
-"Bem-vindo, " + nomeUsuario + "!";
+"Bem-vindo, " + nomeUsuario;
 
 /* =====================================
-EVA CONTENT (AJUSTADA COM NOME)
+EVA CONTENT
 ===================================== */
 
 const evaContent = {
@@ -96,113 +1340,253 @@ const evaContent = {
     0:{
         image:"eva-apresentando.png",
         text:
-        `Olá ${nomeUsuario} 👋<br><br>
-Eu sou a EVA e vou ajudar você durante toda a integração tecnológica da Econ Construtora.`
+        `Olá ${nomeUsuario} 👋\n\nEu sou a EVA e vou ajudar você durante toda a integração tecnológica da Econ Construtora.`
+    },
+
+    1:{
+        image:"eva-apontando.png",
+        text:
+        "Aqui você conhecerá os principais recursos tecnológicos, acessos e boas práticas da empresa."
+    },
+
+    2:{
+        image:"eva-computador.png",
+        text:
+        "Sua primeira ação será alterar a senha corporativa e validar seus acessos."
+    },
+
+    3:{
+        image:"eva-negando.png",
+        text:
+        "Nunca compartilhe senhas ou códigos MFA. Seus acessos são pessoais e intransferíveis."
+    },
+
+    4:{
+        image:"eva-computador.png",
+        text:
+        "Teams, Outlook e sistemas internos fazem parte da rotina corporativa diária."
+    },
+
+    5:{
+        image:"eva-negando.png",
+        text:
+        "Se algo parecer suspeito, não clique. Em caso de dúvida, fale com a TI."
+    },
+
+    6:{
+        image:"eva-apontando.png",
+        text:
+        "Os equipamentos corporativos devem ser utilizados exclusivamente para atividades profissionais."
+    },
+
+    7:{
+        image:"eva-apresentando.png",
+        text:
+        "Esse é o time responsável por apoiar você nas demandas de tecnologia."
+    },
+
+    8:{
+        image:"eva-computador.png",
+        text:
+        "Ao abrir chamados, tente descrever o problema com o máximo de detalhes possível."
+    },
+
+    9:{
+        image:"eva-negando.png",
+        text:
+        "A segurança da informação depende da colaboração de todos os colaboradores."
     },
 
     10:{
         image:"eva-final.png",
         text:
-        `Parabéns ${nomeUsuario} 🎉<br><br>
-Sua integração tecnológica foi concluída com sucesso!`
+        `Parabéns ${nomeUsuario} 🎉\n\nSua integração tecnológica foi concluída com sucesso!`
     }
 
 };
 
 /* =====================================
-SLIDES / EVA / CONTROLES
+SLIDES
 ===================================== */
 
 function getSlides(){
+
     return document.querySelectorAll(".slide");
+
 }
 
 function showSlide(index){
 
     const slides = getSlides();
 
-    slides.forEach(s => s.classList.remove("active"));
+    slides.forEach(slide=>{
+
+        slide.classList.remove("active");
+
+    });
+
     slides[index].classList.add("active");
 
     updateProgress(index);
+
     updateButtons();
+
     updateCounter();
+
     updateEva();
 
-    slides[index].scrollTo({ top:0, behavior:"smooth" });
+    slides[index].scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
 }
 
 function nextSlide(){
+
     const slides = getSlides();
+
     if(current < slides.length -1){
+
         current++;
+
         showSlide(current);
+
     }
+
 }
 
 function prevSlide(){
+
     if(current > 0){
+
         current--;
+
         showSlide(current);
+
     }
+
 }
+
+/* =====================================
+PROGRESS
+===================================== */
 
 function updateProgress(index){
+
     const slides = getSlides();
-    const percent = (index / (slides.length -1)) * 100;
-    document.getElementById("progress").style.width = percent + "%";
+
+    const percent =
+    (index / (slides.length -1)) * 100;
+
+    document.getElementById("progress").style.width =
+    percent + "%";
+
 }
 
+/* =====================================
+BUTTONS
+===================================== */
+
 function updateButtons(){
+
     const slides = getSlides();
 
     document.getElementById("prevBtn").style.display =
-    current === 0 ? "none" : "inline-block";
+    current === 0
+    ? "none"
+    : "inline-block";
 
     document.getElementById("nextBtn").style.display =
-    current === slides.length -1 ? "none" : "inline-block";
+    current === slides.length -1
+    ? "none"
+    : "inline-block";
 
     document.querySelector(".nav").style.display =
-    current === 0 ? "none" : "flex";
+    current === 0
+    ? "none"
+    : "flex";
+
 }
 
+/* =====================================
+COUNTER
+===================================== */
+
 function updateCounter(){
+
     const slides = getSlides();
+
     document.getElementById("counter").innerText =
     `Slide ${current + 1} de ${slides.length}`;
+
 }
+
+/* =====================================
+EVA
+===================================== */
 
 function updateEva(){
 
-    const eva = evaContent[current];
+    const eva =
+    evaContent[current];
 
-    if(!eva) return;
+    document.getElementById("evaImage").src =
+    eva.image;
 
-    document.getElementById("evaImage").src = eva.image;
-    document.getElementById("evaMessage").innerHTML = eva.text;
+    document.getElementById("evaMessage").innerHTML =
+    eva.text.replace(/\n/g,"<br>");
 
 }
+
+/* =====================================
+FINALIZAR
+===================================== */
 
 function finalizar(){
-    alert(`✅ ${nomeUsuario}, sua integração foi concluída com sucesso!`);
+
+    alert(
+        `✅ ${nomeUsuario}, sua integração foi concluída com sucesso!`
+    );
+
 }
 
-/* EVENTS */
+/* =====================================
+EVENTS
+===================================== */
 
-document.getElementById("startBtn").addEventListener("click", nextSlide);
-document.getElementById("nextBtn").addEventListener("click", nextSlide);
-document.getElementById("prevBtn").addEventListener("click", prevSlide);
+document.getElementById("startBtn")
+.addEventListener("click", nextSlide);
+
+document.getElementById("nextBtn")
+.addEventListener("click", nextSlide);
+
+document.getElementById("prevBtn")
+.addEventListener("click", prevSlide);
+
+/* =====================================
+KEYBOARD
+===================================== */
 
 document.addEventListener("keydown",(e)=>{
-    if(e.key === "ArrowRight") nextSlide();
-    if(e.key === "ArrowLeft") prevSlide();
+
+    if(e.key === "ArrowRight"){
+        nextSlide();
+    }
+
+    if(e.key === "ArrowLeft"){
+        prevSlide();
+    }
+
 });
 
-/* START */
+/* =====================================
+START
+===================================== */
+
 showSlide(0);
 
 </script>
 
 </body>
 </html>
-``
